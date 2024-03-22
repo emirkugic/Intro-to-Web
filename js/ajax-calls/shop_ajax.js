@@ -26,14 +26,43 @@ function renderProducts(products) {
 	products.forEach((product) => {
 		const productHTML = `
             <div class="col-12 col-md-4 col-lg-3 mb-5">
-                <a class="product-item" href="#">
+                <div class="product-item">
                     <img src="${product.image_url}" class="img-fluid product-thumbnail"/>
                     <h3 class="product-title">${product.title}</h3>
                     <strong class="product-price">$${product.price}</strong>
-                    <span class="icon-cross"><img src="images/cross.svg" class="img-fluid" /></span>
-                </a>
+                    <span class="icon-cross" data-id="${product.id}"><img src="images/cross.svg" class="img-fluid" /></span>
+                </div>
             </div>
         `;
 		container.innerHTML += productHTML;
 	});
+
+	document.querySelectorAll(".icon-cross").forEach((icon) => {
+		icon.addEventListener("click", function () {
+			const productId = this.getAttribute("data-id");
+			addToCart(productId);
+		});
+	});
+}
+
+function addToCart(productId) {
+	console.log(`Pretend to add product ID ${productId} to cart`);
+
+	// fetch("path/to/real/future/cart/api", {
+	// 	method: "POST",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 	},
+	// 	body: JSON.stringify({
+	// 		productId: productId,
+	// 		quantity: 1,
+	// 	}),
+	// })
+	// 	.then((response) => response.json())
+	// 	.then((data) => {
+	// 		console.log("Success:", data);
+	// 	})
+	// 	.catch((error) => {
+	// 		console.error("Error:", error);
+	// 	});
 }
