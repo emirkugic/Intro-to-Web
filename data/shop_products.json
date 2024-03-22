@@ -1,0 +1,44 @@
+[
+    {
+        "id": "1",
+        "title": "Nordic Chair EMIR KUGIC Ajax calls",
+        "price": "50.00",
+        "image_url": "images/product-1.png"
+    },
+    {
+        "id": "2",
+        "title": "Kruzo Aero Chair Ajax calls",
+        "price": "78.00",
+        "image_url": "images/product-2.png"
+    },
+    {
+        "id": "2",
+        "title": "Kruzo Aero Chair Ajax calls",
+        "price": "78.00",
+        "image_url": "images/product-2.png"
+    },
+    {
+        "id": "2",
+        "title": "Kruzo Aero Chair Ajax calls",
+        "price": "78.00",
+        "image_url": "images/product-2.png"
+    },
+    {
+        "id": "2",
+        "title": "Kruzo Aero Chair Ajax calls",
+        "price": "78.00",
+        "image_url": "images/product-2.png"
+    },
+    {
+        "id": "2",
+        "title": "Kruzo Aero Chair Ajax calls",
+        "price": "78.00",
+        "image_url": "images/product-2.png"
+    },
+    {
+        "id": "3",
+        "title": "Ergonomic Chair Ajax calls",
+        "price": "43.00",
+        "image_url": "images/product-3.png"
+    }
+]
