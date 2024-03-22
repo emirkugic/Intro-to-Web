@@ -1,0 +1,18 @@
+{
+    "items": [
+        {
+            "id": "1",
+            "name": "Product 1",
+            "price": 49.00,
+            "image": "images/product-1.png",
+            "quantity": 2
+        },
+        {
+            "id": "2",
+            "name": "Product 2",
+            "price": 100.00,
+            "image": "images/product-2.png",
+            "quantity": 2
+        }
+    ]
+}

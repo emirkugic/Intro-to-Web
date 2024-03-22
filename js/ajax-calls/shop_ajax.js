@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 });
 
+// TODO Check if the quantity is > 0
+
 function renderProducts(products) {
 	const container = document.querySelector(
 		".untree_co-section.product-section .container .row"
