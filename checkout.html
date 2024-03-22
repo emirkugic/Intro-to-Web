@@ -1,10 +1,3 @@
-<!-- /*
-* Bootstrap 5
-* Template Name: Furni
-* Template Author: Untree.co
-* Template URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -98,7 +91,7 @@
 				<div class="row mb-5">
 					<div class="col-md-12">
 						<div class="border p-4 rounded" role="alert">
-							Returning customer? <a href="#">Click here</a> to login
+							Returning customer? <a href="login.html">Click here</a> to login
 						</div>
 					</div>
 				</div>
@@ -111,15 +104,7 @@
 									>Country <span class="text-danger">*</span></label
 								>
 								<select id="c_country" class="form-control">
-									<option value="1">Select a country</option>
-									<option value="2">bangladesh</option>
-									<option value="3">Algeria</option>
-									<option value="4">Afghanistan</option>
-									<option value="5">Ghana</option>
-									<option value="6">Albania</option>
-									<option value="7">Bahrain</option>
-									<option value="8">Colombia</option>
-									<option value="9">Dominican Republic</option>
+									<option value="">Select a country</option>
 								</select>
 							</div>
 							<div class="form-group row">
@@ -271,159 +256,6 @@
 							</div>
 
 							<div class="form-group">
-								<label
-									for="c_ship_different_address"
-									class="text-black"
-									data-bs-toggle="collapse"
-									href="#ship_different_address"
-									role="button"
-									aria-expanded="false"
-									aria-controls="ship_different_address"
-									><input
-										type="checkbox"
-										value="1"
-										id="c_ship_different_address"
-									/>
-									Ship To A Different Address?</label
-								>
-								<div class="collapse" id="ship_different_address">
-									<div class="py-2">
-										<div class="form-group">
-											<label for="c_diff_country" class="text-black"
-												>Country <span class="text-danger">*</span></label
-											>
-											<select id="c_diff_country" class="form-control">
-												<option value="1">Select a country</option>
-												<option value="2">bangladesh</option>
-												<option value="3">Algeria</option>
-												<option value="4">Afghanistan</option>
-												<option value="5">Ghana</option>
-												<option value="6">Albania</option>
-												<option value="7">Bahrain</option>
-												<option value="8">Colombia</option>
-												<option value="9">Dominican Republic</option>
-											</select>
-										</div>
-
-										<div class="form-group row">
-											<div class="col-md-6">
-												<label for="c_diff_fname" class="text-black"
-													>First Name <span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_fname"
-													name="c_diff_fname"
-												/>
-											</div>
-											<div class="col-md-6">
-												<label for="c_diff_lname" class="text-black"
-													>Last Name <span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_lname"
-													name="c_diff_lname"
-												/>
-											</div>
-										</div>
-
-										<div class="form-group row">
-											<div class="col-md-12">
-												<label for="c_diff_companyname" class="text-black"
-													>Company Name
-												</label>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_companyname"
-													name="c_diff_companyname"
-												/>
-											</div>
-										</div>
-
-										<div class="form-group row mb-3">
-											<div class="col-md-12">
-												<label for="c_diff_address" class="text-black"
-													>Address <span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_address"
-													name="c_diff_address"
-													placeholder="Street address"
-												/>
-											</div>
-										</div>
-
-										<div class="form-group">
-											<input
-												type="text"
-												class="form-control"
-												placeholder="Apartment, suite, unit etc. (optional)"
-											/>
-										</div>
-
-										<div class="form-group row">
-											<div class="col-md-6">
-												<label for="c_diff_state_country" class="text-black"
-													>State / Country
-													<span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_state_country"
-													name="c_diff_state_country"
-												/>
-											</div>
-											<div class="col-md-6">
-												<label for="c_diff_postal_zip" class="text-black"
-													>Posta / Zip <span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_postal_zip"
-													name="c_diff_postal_zip"
-												/>
-											</div>
-										</div>
-
-										<div class="form-group row mb-5">
-											<div class="col-md-6">
-												<label for="c_diff_email_address" class="text-black"
-													>Email Address
-													<span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_email_address"
-													name="c_diff_email_address"
-												/>
-											</div>
-											<div class="col-md-6">
-												<label for="c_diff_phone" class="text-black"
-													>Phone <span class="text-danger">*</span></label
-												>
-												<input
-													type="text"
-													class="form-control"
-													id="c_diff_phone"
-													name="c_diff_phone"
-													placeholder="Phone Number"
-												/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
 								<label for="c_order_notes" class="text-black"
 									>Order Notes</label
 								>
@@ -438,6 +270,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-6">
 						<div class="row mb-5">
 							<div class="col-md-12">
@@ -479,30 +312,7 @@
 											<th>Total</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>
-													Top Up T-Shirt <strong class="mx-2">x</strong> 1
-												</td>
-												<td>$250.00</td>
-											</tr>
-											<tr>
-												<td>Polo Shirt <strong class="mx-2">x</strong> 1</td>
-												<td>$100.00</td>
-											</tr>
-											<tr>
-												<td class="text-black font-weight-bold">
-													<strong>Cart Subtotal</strong>
-												</td>
-												<td class="text-black">$350.00</td>
-											</tr>
-											<tr>
-												<td class="text-black font-weight-bold">
-													<strong>Order Total</strong>
-												</td>
-												<td class="text-black font-weight-bold">
-													<strong>$350.00</strong>
-												</td>
-											</tr>
+											<!-- Ajax data goes here -->
 										</tbody>
 									</table>
 
@@ -584,9 +394,9 @@
 									<div class="form-group">
 										<button
 											class="btn btn-black btn-lg py-3 btn-block"
-											onclick="window.location='thankyou.html'"
+											onclick="window.location='credit_card.html'"
 										>
-											Place Order
+											Next
 										</button>
 									</div>
 								</div>
@@ -670,5 +480,8 @@
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/tiny-slider.js"></script>
 		<script src="js/custom.js"></script>
+		<script src="js/checkout.js"></script>
+		<script src="js/ajax-calls/checkout_ajax_user_data.js"></script>
+		<script src="js/ajax-calls/checkout_ajax_cart_contents.js"></script>
 	</body>
 </html>
