@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
 
+/* 
+define color constants */
+:root {
+	--green: #3b5d50;
+	--white: #eff2f1;
+	--white-text: #ffffff;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -9,7 +16,7 @@
 }
 
 body {
-	background-color: #3ecc6d;
+	background-color: var(--white);
 }
 
 .container {
@@ -21,8 +28,8 @@ body {
 .card.box1 {
 	width: 350px;
 	height: 500px;
-	background-color: #3ecc6d;
-	color: #baf0c3;
+	background-color: var(--green);
+	color: var(--white-text);
 	border-radius: 0;
 }
 
@@ -41,7 +48,7 @@ body {
 	width: 20px;
 	background-color: transparent;
 	border: none;
-	color: #3ecc6d;
+	color: var(--white-text);
 }
 
 .box2 .btn.btn-primary.bar:hover {
@@ -141,7 +148,7 @@ img {
 }
 
 .btn-outline-primary:hover {
-	background-color: #05cf48;
+	background-color: var(--green);
 	border: 1px solid #ddd;
 }
 
@@ -151,7 +158,7 @@ img {
 .btn-outline-primary.dropdown-toggle.show,
 .btn-outline-primary:active {
 	color: #baf0c3;
-	background-color: #3ecc6d;
+	background-color: var(--green);
 	box-shadow: none;
 	border: 1px solid #ddd;
 }
@@ -176,12 +183,12 @@ form .btn.btn-primary {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #3ecc6d;
+	background-color: var(--green);
 	border: 1px solid #ddd;
 }
 
 form .btn.btn-primary:hover {
-	background-color: #05cf48;
+	background-color: var(--green);
 }
 
 @media (max-width: 750px) {
