@@ -17,7 +17,7 @@ function renderCart(items) {
 		const row = `
       <tr>
         <td class="product-thumbnail">
-          <img src="${item.image}" alt="Image" class="img-fluid" />
+          <img src="../${item.image}" alt="Image" class="img-fluid" />
         </td>
         <td class="product-name">
           <h2 class="h5 text-black">${item.name}</h2>

@@ -29,10 +29,10 @@ function renderProducts(products) {
 		const productHTML = `
             <div class="col-12 col-md-4 col-lg-3 mb-5">
                 <div class="product-item">
-                    <img src="${product.image_url}" class="img-fluid product-thumbnail"/>
+                    <img src="../${product.image_url}" class="img-fluid product-thumbnail"/>
                     <h3 class="product-title">${product.title}</h3>
                     <strong class="product-price">$${product.price}</strong>
-                    <span class="icon-cross" data-id="${product.id}"><img src="images/cross.svg" class="img-fluid" /></span>
+                    <span class="icon-cross" data-id="${product.id}"><img src="../images/cross.svg" class="img-fluid" /></span>
                 </div>
             </div>
         `;

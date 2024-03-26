@@ -8,7 +8,6 @@
 		/>
 		<meta name="author" content="Untree.co" />
 		<link rel="shortcut icon" href="favicon.png" />
-
 		<meta name="description" content="" />
 		<meta name="keywords" content="bootstrap, bootstrap4" />
 
@@ -20,6 +19,14 @@
 		/>
 		<link href="css/tiny-slider.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
+
+		<!-- jQuery (necessary for SPApp's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- SPApp CSS and JS -->
+		<link href="/css/spapp.css" rel="stylesheet" />
+		<script src="/js/jquery/jquery.spapp.min.js"></script>
+
 		<title>Web programming intro</title>
 	</head>
 
@@ -49,9 +56,11 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="index.html">Home</a>
 						</li>
-						<li><a class="nav-link" href="shop.html">Shop</a></li>
-						<li><a class="nav-link" href="about.html">About us</a></li>
-						<li><a class="nav-link" href="contact.html">Contact us</a></li>
+						<li><a class="nav-link" href="views/shop.html">Shop</a></li>
+						<li><a class="nav-link" href="views/about.html">About us</a></li>
+						<li>
+							<a class="nav-link" href="views/contact.html">Contact us</a>
+						</li>
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -61,7 +70,7 @@
 							/></a>
 						</li>
 						<li>
-							<a class="nav-link" href="cart.html"
+							<a class="nav-link" href="/views/cart.html"
 								><img src="images/cart.svg"
 							/></a>
 						</li>
