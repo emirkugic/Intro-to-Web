@@ -13,6 +13,13 @@
             "price": 100.00,
             "image": "images/product-2.png",
             "quantity": 2
+        },
+        {
+            "id": "3",
+            "name": "Product 2",
+            "price": 100.00,
+            "image": "images/product-2.png",
+            "quantity": 2
         }
     ]
 }
