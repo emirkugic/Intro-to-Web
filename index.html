@@ -65,10 +65,10 @@
 
 		<!-- SPApp Main Content -->
 		<main id="spapp">
-			<section id="home" data-load="/home.html"></section>
-			<section id="shop" data-load="views/shop.html"></section>
-			<section id="about" data-load="views/about.html"></section>
-			<section id="contact" data-load="views/contact.html"></section>
+			<section id="home" data-load="home.html"></section>
+			<section id="shop" data-load="shop.html"></section>
+			<section id="about" data-load="about.html"></section>
+			<section id="contact" data-load="contact.html"></section>
 		</main>
 
 		<!-- Start Footer Section -->
@@ -147,13 +147,15 @@
 
 		<!-- Ajax Calls -->
 		<!-- Index ajax -->
-		<script src="js/ajax-calls/index_ajax_new_products.js"></script>
-		<script src="js/ajax-calls/index_ajax_popular_products.js"></script>
+		<script src="../js/ajax-calls/index_ajax_new_products.js"></script>
+		<script src="../js/ajax-calls/index_ajax_popular_products.js"></script>
 		<!-- Shop index -->
-		<script src="../js/ajax-calls/shop_ajax.js"></script>
+		<script src="../../js/ajax-calls/shop_ajax.js"></script>
+
+		<!-- SPApp -->
 		<script>
 			$(function () {
-				var app = $.spapp({ defaultView: "home", templateDir: "/views/" });
+				var app = $.spapp({ defaultView: "home", templateDir: "./views/" });
 				app.run();
 			});
 		</script>
