@@ -1,8 +1,6 @@
 var app = $.spapp({
-    defaultView: "#page1",
-    templateDir: "../views/"
-
+	defaultView: "#home",
+	templateDir: "../views/",
 });
-
 
 app.run();

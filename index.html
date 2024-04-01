@@ -22,6 +22,10 @@
 	<link href="/css/spapp.css" rel="stylesheet" />
 	<script src="/js/jquery/jquery.spapp.min.js"></script>
 
+
+	<!-- profile css -->
+	<link rel="stylesheet" href="./css/profile.css" />
+
 	<title>Web programming intro</title>
 </head>
 
@@ -44,6 +48,14 @@
 					<li><a class="nav-link" href="#about">About us</a></li>
 					<li><a class="nav-link" href="#contact">Contact us</a></li>
 				</ul>
+				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+					<li>
+						<a class="nav-link" href="#profile"><img src="images/user.svg" /></a>
+					</li>
+					<li>
+						<a class="nav-link" href="#cart"><img src="images/cart.svg" /></a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -55,6 +67,13 @@
 		<section id="shop" data-load="shop.html"></section>
 		<section id="about" data-load="about.html"></section>
 		<section id="contact" data-load="contact.html"></section>
+		<section id="thankyou" data-load="thankyou.html"></section>
+		<section id="services" data-load="services.html"></section>
+		<section id="profile" data-load="profile.html"></section>
+		<section id="article" data-load="article.html"></section>
+		<section id="cart" data-load="cart.html"></section>
+		<section id="checkout" data-load="checkout.html"></section>
+		<section id="credit_card" data-load="credit_card.html"></section>
 	</main>
 
 	<!-- Start Footer Section -->
@@ -118,13 +137,24 @@
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/tiny-slider.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/jquery/jquery.min.js"></script>
+	<script src="js/jquery/jquery.spapp.min.js"></script>
+	<script src="js/jquery/script.js"></script>
 
-	<!-- Ajax Calls -->
 	<!-- Index ajax -->
-	<script src="../js/ajax-calls/index_ajax_new_products.js"></script>
-	<script src="../js/ajax-calls/index_ajax_popular_products.js"></script>
+	<script src="/js/ajax-calls/index_ajax_new_products.js"></script>
+	<script src="/js/ajax-calls/index_ajax_popular_products.js"></script>
 	<!-- Shop index -->
-	<script src="../../js/ajax-calls/shop_ajax.js"></script>
+	<script src="/js/ajax-calls/shop_ajax.js"></script>
+	<script src="/js/profile.js"></script>
+	<script src="/js/ajax-calls/cart_ajax.js"></script>
+	<script src="js/checkout.js"></script>
+	<script src="js/ajax-calls/checkout_ajax_user_data.js"></script>
+	<script src="js/ajax-calls/checkout_ajax_cart_contents.js"></script>
+	<script src="js/credit_card.js"></script>
+
+
+
 
 	<!-- SPApp -->
 	<script>
