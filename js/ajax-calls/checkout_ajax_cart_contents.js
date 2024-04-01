@@ -1,4 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
+$(document).on("checkoutPageLoaded", function () {
+	fetchCheckoutCartContents();
+});
+
+function fetchCheckoutCartContents() {
 	fetch("../../data/cart.json")
 		.then((response) => {
 			if (!response.ok) {
@@ -12,12 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		.catch((error) => {
 			console.error("Error:", error);
 		});
-});
+}
 
 function updateOrderTable(items) {
 	const orderTableBody = document.querySelector(
 		".site-block-order-table tbody"
 	);
+	if (!orderTableBody) {
+		console.error("Order table body not found.");
+		return;
+	}
 	let cartSubtotal = 0;
 
 	orderTableBody.innerHTML = "";

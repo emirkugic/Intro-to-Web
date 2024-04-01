@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+$(document).on("shopPageLoaded", function () {
 	fetch("../../data/shop_products.json")
 		.then((response) => {
 			if (!response.ok) {
@@ -17,34 +17,37 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 });
 
-// TODO Check if the quantity is > 0
-
 function renderProducts(products) {
 	const container = document.querySelector(
 		".untree_co-section.product-section .container .row"
 	);
-	container.innerHTML = "";
-
-	products.forEach((product) => {
-		const productHTML = `
+	if (container) {
+		container.innerHTML = products
+			.map(
+				(product) => `
             <div class="col-12 col-md-4 col-lg-3 mb-5">
                 <div class="product-item">
                     <img src="../${product.image_url}" class="img-fluid product-thumbnail"/>
                     <h3 class="product-title">${product.title}</h3>
                     <strong class="product-price">$${product.price}</strong>
-                    <span class="icon-cross" data-id="${product.id}"><img src="../images/cross.svg" class="img-fluid" /></span>
+                    <span class="icon-cross" data-id="${product.id}">
+                        <img src="../images/cross.svg" class="img-fluid" />
+                    </span>
                 </div>
             </div>
-        `;
-		container.innerHTML += productHTML;
-	});
+        `
+			)
+			.join("");
 
-	document.querySelectorAll(".icon-cross").forEach((icon) => {
-		icon.addEventListener("click", function () {
-			const productId = this.getAttribute("data-id");
-			addToCart(productId);
+		document.querySelectorAll(".icon-cross").forEach((icon) => {
+			icon.addEventListener("click", function () {
+				const productId = this.getAttribute("data-id");
+				addToCart(productId);
+			});
 		});
-	});
+	} else {
+		console.error("Container for products not found.");
+	}
 }
 
 function addToCart(productId) {

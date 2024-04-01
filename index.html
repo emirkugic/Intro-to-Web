@@ -8,25 +8,15 @@
 	<link rel="shortcut icon" href="favicon.png" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="bootstrap, bootstrap4" />
+	<title>Web programming intro</title>
 
-	<!-- Bootstrap CSS -->
+	<!-- CSS Links -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 	<link href="css/tiny-slider.css" rel="stylesheet" />
 	<link href="css/style.css" rel="stylesheet" />
-
-	<!-- jQuery (necessary for SPApp's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<!-- SPApp CSS and JS -->
 	<link href="/css/spapp.css" rel="stylesheet" />
-	<script src="/js/jquery/jquery.spapp.min.js"></script>
-
-
-	<!-- profile css -->
 	<link rel="stylesheet" href="./css/profile.css" />
-
-	<title>Web programming intro</title>
 </head>
 
 <body>
@@ -134,29 +124,25 @@
 	</footer>
 	<!-- End Footer Section -->
 
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<script src="js/tiny-slider.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/jquery/jquery.min.js"></script>
-	<script src="js/jquery/jquery.spapp.min.js"></script>
-	<script src="js/jquery/script.js"></script>
+	<!-- JavaScript and jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/tiny-slider.js"></script>
+	<script src="/js/custom.js"></script>
+	<script src="/js/jquery/jquery.spapp.min.js"></script>
+	<script src="/js/jquery/script.js"></script>
 
-	<!-- Index ajax -->
+	<!-- AJAX Calls and Page Specific Scripts -->
 	<script src="/js/ajax-calls/index_ajax_new_products.js"></script>
 	<script src="/js/ajax-calls/index_ajax_popular_products.js"></script>
-	<!-- Shop index -->
 	<script src="/js/ajax-calls/shop_ajax.js"></script>
 	<script src="/js/profile.js"></script>
 	<script src="/js/ajax-calls/cart_ajax.js"></script>
 	<script src="js/checkout.js"></script>
 	<script src="js/ajax-calls/checkout_ajax_user_data.js"></script>
 	<script src="js/ajax-calls/checkout_ajax_cart_contents.js"></script>
-	<script src="js/credit_card.js"></script>
 
-
-
-
-	<!-- SPApp -->
+	<!-- SPA App Initialization -->
 	<script>
 		$(function () {
 			var app = $.spapp({
@@ -164,6 +150,24 @@
 				templateDir: "./views/"
 			});
 			app.run();
+		});
+	</script>
+
+	<!-- Page Load Events -->
+	<script>
+		// Handling SPA Page Load Events
+		['shop', 'cart'].forEach(page => {
+			$(window).on('hashchange', function () {
+				if (window.location.hash === `#${page}`) {
+					$(document).trigger(`${page}PageLoaded`);
+				}
+			});
+
+			$(document).ready(function () {
+				if (window.location.hash === `#${page}`) {
+					$(document).trigger(`${page}PageLoaded`);
+				}
+			});
 		});
 	</script>
 </body>

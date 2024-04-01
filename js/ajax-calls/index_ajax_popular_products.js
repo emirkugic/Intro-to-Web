@@ -1,4 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
+// Removed the DOMContentLoaded listener and instead listen for a custom event.
+$(document).on("popularProductsPageLoaded", function () {
+	fetchPopularProducts();
+});
+
+function fetchPopularProducts() {
 	fetch("../../data/index_popular_products.json")
 		.then((response) => {
 			if (!response.ok) {
@@ -15,26 +20,41 @@ document.addEventListener("DOMContentLoaded", function () {
 				error
 			);
 		});
-});
+}
 
 function renderPopularProducts(products) {
 	const container = document.querySelector(".popular-product .container .row");
-	container.innerHTML = "";
-
-	products.forEach((product) => {
-		const productHTML = `
-            <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="product-item-sm d-flex">
-                    <div class="thumbnail">
-                        <img src="${product.image_url}" alt="Image" class="img-fluid" />
-                    </div>
-                    <div class="pt-3">
-                        <h3>${product.title}</h3>
-                        <p><a href="#">$${product.price}</a></p>
-                    </div>
+	if (!container) {
+		console.error("Container for popular products not found.");
+		return;
+	}
+	container.innerHTML = products
+		.map(
+			(product) => `
+        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="product-item-sm d-flex">
+                <div class="thumbnail">
+                    <img src="${product.image_url}" alt="Image" class="img-fluid" />
+                </div>
+                <div class="pt-3">
+                    <h3>${product.title}</h3>
+                    <p><a href="#">$${product.price}</a></p>
                 </div>
             </div>
-        `;
-		container.innerHTML += productHTML;
-	});
+        </div>
+    `
+		)
+		.join("");
 }
+
+$(window).on("hashchange", function () {
+	if (window.location.hash === "#home") {
+		$(document).trigger("popularProductsPageLoaded");
+	}
+});
+
+$(document).ready(function () {
+	if (window.location.hash === "#home") {
+		$(document).trigger("popularProductsPageLoaded");
+	}
+});

@@ -1,16 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
+$(document).on("newProductsPageLoaded", function () {
+	fetchNewProducts();
+});
+
+function fetchNewProducts() {
 	fetch("../../data/index_new_items.json")
 		.then((response) => response.json())
 		.then((data) => {
 			renderNewProducts(data);
 		})
-		.catch((error) => console.error("Error loading new items:", error));
-});
+		.catch((error) => console.log("Error loading new items:", error));
+}
 
 function renderNewProducts(products) {
 	const rowContainer = document.querySelector(
 		".product-section .container .row"
 	);
+	if (!rowContainer) {
+		console.error("Container for new products not found.");
+		return;
+	}
 
 	const columnsToKeep = 1;
 	while (rowContainer.children.length > columnsToKeep) {
@@ -31,3 +39,15 @@ function renderNewProducts(products) {
 		rowContainer.insertAdjacentHTML("beforeend", productColumnHTML);
 	});
 }
+
+$(window).on("hashchange", function () {
+	if (window.location.hash === "#home") {
+		$(document).trigger("newProductsPageLoaded");
+	}
+});
+
+$(document).ready(function () {
+	if (window.location.hash === "" || window.location.hash === "#home") {
+		$(document).trigger("newProductsPageLoaded");
+	}
+});
