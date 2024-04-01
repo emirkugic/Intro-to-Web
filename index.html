@@ -29,7 +29,6 @@
 
 		<title>Web programming intro</title>
 	</head>
-
 	<body>
 		<!-- Start Header/Navigation -->
 		<nav
@@ -37,8 +36,7 @@
 			arial-label="Furni navigation bar"
 		>
 			<div class="container">
-				<a class="navbar-brand" href="index.html">Burch Shop<span>.</span></a>
-
+				<a class="navbar-brand" href="#home">Burch Shop<span>.</span></a>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -54,200 +52,24 @@
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item active">
-							<a class="nav-link" href="index.html">Home</a>
+							<a class="nav-link" href="#home">Home</a>
 						</li>
-						<li><a class="nav-link" href="views/shop.html">Shop</a></li>
-						<li><a class="nav-link" href="views/about.html">About us</a></li>
-						<li>
-							<a class="nav-link" href="views/contact.html">Contact us</a>
-						</li>
-					</ul>
-
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li>
-							<a class="nav-link" href="profile.html"
-								><img src="images/user.svg"
-							/></a>
-						</li>
-						<li>
-							<a class="nav-link" href="/views/cart.html"
-								><img src="images/cart.svg"
-							/></a>
-						</li>
+						<li><a class="nav-link" href="#shop">Shop</a></li>
+						<li><a class="nav-link" href="#about">About us</a></li>
+						<li><a class="nav-link" href="#contact">Contact us</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 		<!-- End Header/Navigation -->
 
-		<!-- Start Hero Section -->
-		<div class="hero">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-5">
-						<div class="intro-excerpt">
-							<h1>
-								Modern Interior <span clsas="d-block">Modern Lifestyle</span>
-							</h1>
-							<p class="mb-4">
-								Our website offers elegant and functional furniture to enhance
-								your home. Find everything from cozy sofas to sleek dining
-								tables, each piece showcasing craftsmanship and style. Perfect
-								for anyone looking to elevate their living space effortlessly..
-							</p>
-							<p>
-								<a href="" class="btn btn-secondary me-2">Shop Now</a
-								><a href="#" class="btn btn-white-outline">Explore</a>
-							</p>
-						</div>
-					</div>
-					<div class="col-lg-7">
-						<div class="hero-img-wrap">
-							<img src="images/couch.png" class="img-fluid" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Hero Section -->
-
-		<!-- Start Product Section -->
-		<div class="product-section">
-			<div class="container">
-				<div class="row">
-					<!-- Start Column 1 -->
-					<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-						<h2 class="mb-4 section-title">Exceptional Quality Materials.</h2>
-						<p class="mb-4">
-							Our selection features only the finest materials, ensuring
-							durability and beauty in every piece. Experience unparalleled
-							comfort and style that stands the test of time.
-						</p>
-						<p><a href="shop.html" class="btn">Discover More</a></p>
-					</div>
-
-					<!-- End Column 1 -->
-
-					<!-- Start Column 2 -->
-					<!-- <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="product-item" href="cart.html">
-							<img
-								src="images/product-1.png"
-								class="img-fluid product-thumbnail"
-							/>
-							<h3 class="product-title">Nordic Chair</h3>
-							<strong class="product-price">$50.00</strong>
-
-							<span class="icon-cross">
-								<img src="images/cross.svg" class="img-fluid" />
-							</span>
-						</a>
-					</div> -->
-					<!-- End Column 2 -->
-				</div>
-			</div>
-		</div>
-		<!-- End Product Section -->
-
-		<!-- Start Why Choose Us Section -->
-		<div class="why-choose-section">
-			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-lg-6">
-						<h2 class="section-title">Why Choose Us</h2>
-						<p>
-							Discover the unparalleled blend of quality, style, and value that
-							sets us apart. Our commitment to excellence ensures a seamless
-							shopping experience.
-						</p>
-
-						<div class="row my-5">
-							<div class="col-6 col-md-6">
-								<div class="feature">
-									<div class="icon">
-										<img src="images/truck.svg" alt="Image" class="img-fluid" />
-									</div>
-									<h3>Fast & Free Shipping</h3>
-									<p>
-										Enjoy swift delivery at no extra cost. We ensure your orders
-										reach you promptly, without any hassle.
-									</p>
-								</div>
-							</div>
-
-							<div class="col-6 col-md-6">
-								<div class="feature">
-									<div class="icon">
-										<img src="images/bag.svg" alt="Image" class="img-fluid" />
-									</div>
-									<h3>Easy to Shop</h3>
-									<p>
-										Our intuitive online platform makes shopping a breeze. Find
-										everything you need with just a few clicks.
-									</p>
-								</div>
-							</div>
-
-							<div class="col-6 col-md-6">
-								<div class="feature">
-									<div class="icon">
-										<img
-											src="images/support.svg"
-											alt="Image"
-											class="img-fluid"
-										/>
-									</div>
-									<h3>24/7 Support</h3>
-									<p>
-										Our customer service team is always ready to assist you,
-										ensuring a seamless and satisfactory shopping experience.
-									</p>
-								</div>
-							</div>
-
-							<div class="col-6 col-md-6">
-								<div class="feature">
-									<div class="icon">
-										<img
-											src="images/return.svg"
-											alt="Image"
-											class="img-fluid"
-										/>
-									</div>
-									<h3>Hassle Free Returns</h3>
-									<p>
-										Shop with confidence knowing we offer easy returns. If
-										you’re not satisfied, we’re here to make things right.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-5">
-						<div class="img-wrap">
-							<img
-								src="images/why-choose-us-img.jpg"
-								alt="Image"
-								class="img-fluid"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Why Choose Us Section -->
-
-		<!-- Start Popular Product -->
-		<div class="popular-product">
-			<div class="container">
-				<h3>Popular products</h3>
-				<div class="row">
-					<!-- popular products ajax call data goes here -->
-				</div>
-			</div>
-		</div>
-		<!-- End Popular Product -->
+		<!-- SPApp Main Content -->
+		<main id="spapp">
+			<section id="home" data-load="/home.html"></section>
+			<section id="shop" data-load="views/shop.html"></section>
+			<section id="about" data-load="views/about.html"></section>
+			<section id="contact" data-load="views/contact.html"></section>
+		</main>
 
 		<!-- Start Footer Section -->
 		<footer class="footer-section">
@@ -302,7 +124,8 @@
 									document.write(new Date().getFullYear());
 								</script>
 								. All Rights Reserved. &mdash; Designed with love by
-								<a href="https://github.com/emirkugic">Emir Kugic</a>
+								<a href="https://untree.co">Untree.co</a> Distributed By
+								<a hreff="https://themewagon.com">ThemeWagon</a>
 							</p>
 						</div>
 
@@ -321,7 +144,18 @@
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/tiny-slider.js"></script>
 		<script src="js/custom.js"></script>
-		<script src="js/ajax-calls/index_ajax_popular_products.js"></script>
+
+		<!-- Ajax Calls -->
+		<!-- Index ajax -->
 		<script src="js/ajax-calls/index_ajax_new_products.js"></script>
+		<script src="js/ajax-calls/index_ajax_popular_products.js"></script>
+		<!-- Shop index -->
+		<script src="../js/ajax-calls/shop_ajax.js"></script>
+		<script>
+			$(function () {
+				var app = $.spapp({ defaultView: "home", templateDir: "/views/" });
+				app.run();
+			});
+		</script>
 	</body>
 </html>
