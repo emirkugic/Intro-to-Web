@@ -1,0 +1,13 @@
+{
+    "country": "Bosnia and Herzegovina",
+    "firstName": "Emir",
+    "lastName": "Kugic",
+    "companyName": "International Burch University",
+    "address": "1234 Ilidža Sarajevo",
+    "stateCountry": "Federation of Bosnia and Herzegovina",
+    "postalZip": "71000",
+    "emailAddress": "emirkugic@example.com",
+    "phone": "555-1234",
+    "accountPassword": "",
+    "orderNotes": "Leave package at the door."
+}
