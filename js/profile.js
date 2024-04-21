@@ -1,5 +1,5 @@
 (() => {
-	"use-strict";
+	// "use-strict";
 
 	const themeSwiter = {
 		init: function () {
