@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../rest/services/ProductService.class.php';
+require_once __DIR__ . '/../../rest/services/ProductService.class.php';
 
 $json_str = file_get_contents('php://input');
 $payload = json_decode($json_str, true);

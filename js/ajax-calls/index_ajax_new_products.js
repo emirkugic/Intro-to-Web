@@ -3,7 +3,10 @@ $(document).on("newProductsPageLoaded", function () {
 });
 
 function fetchNewProducts() {
-	fetch("http://localhost/web-intro/backend/scripts/get_new_products.php")
+	fetch(
+		"http://localhost/web-intro/backend/scripts/products/get_new_products.php"
+		// "../../backend/scripts/products/get_new_products.php"
+	)
 		.then((response) => response.json())
 		.then((data) => {
 			renderNewProducts(data);

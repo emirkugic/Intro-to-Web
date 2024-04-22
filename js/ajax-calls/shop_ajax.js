@@ -1,5 +1,7 @@
 $(document).on("shopPageLoaded", function () {
-	fetch("http://localhost/web-intro/backend/scripts/get_all_products.php")
+	fetch(
+		"http://localhost/web-intro/backend/scripts/products/get_all_products.php"
+	)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
