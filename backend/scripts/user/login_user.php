@@ -1,7 +1,15 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 require_once __DIR__ . '/../../rest/services/UserService.class.php';
-header('Content-Type: application/json');
 
 $input = file_get_contents("php://input");
 $login_data = json_decode($input, true);

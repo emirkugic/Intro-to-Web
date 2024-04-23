@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../../rest/services/UserService.class.php';
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 $user_service = new UserService();
 $user_id = isset($_GET['id']) ? $_GET['id'] : null;
