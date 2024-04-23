@@ -3,46 +3,39 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, 
-						initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="../css/login.css" />
 	<title>Web prog</title>
 </head>
 
 <body>
 	<a href="../index.html" class="back-button">Back</a>
-	<!-- container div -->
 	<div class="container">
-		<!-- upper button section to select
-			the login or signup form -->
 		<div class="slider"></div>
 		<div class="btn">
 			<button class="login">Login</button>
 			<button class="signup">Signup</button>
 		</div>
 
-		<!-- Form section that contains the
-			login and the signup form -->
 		<div class="form-section">
-			<!-- login form -->
 			<div class="login-box">
 				<input type="email" class="email ele" placeholder="youremail@email.com" />
 				<input type="password" class="password ele" placeholder="password" />
 				<button class="clkbtn">Login</button>
 			</div>
 
-			<!-- signup form -->
 			<div class="signup-box">
-				<input type="text" class="name ele" placeholder="Enter your name" />
-				<input type="email" class="email ele" placeholder="youremail@email.com" />
-				<input type="password" class="password ele" placeholder="password" />
-				<input type="password" class="password ele" placeholder="Confirm password" />
+				<input type="text" class="first-name ele" placeholder="First Name" />
+				<input type="text" class="last-name ele" placeholder="Last Name" />
+				<input type="email" class="email ele" placeholder="mail@email.com" />
+				<input type="password" class="password ele" placeholder="Password" />
+				<input type="text" class="phone ele" placeholder="Phone Number" />
+				<input type="url" class="profile-picture-url ele" placeholder="Profile Picture URL" />
 				<button class="clkbtn">Signup</button>
 			</div>
 		</div>
 	</div>
 	<script src="../js/login.js"></script>
-	<!-- <script src="../js/ajax-calls/login_ajax.js"></script> -->
 </body>
 
 </html>
