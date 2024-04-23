@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../rest/services/CartService.class.php';
+require_once __DIR__ . '/../../rest/services/ProductService.class.php';
 require_once __DIR__ . '/../../rest/dao/ProductDao.class.php';
 
 header('Access-Control-Allow-Origin: *');
@@ -23,7 +24,7 @@ if ($user_id == null) {
 }
 
 $cart_service = new CartService();
-$product_dao = new ProductDao();
+$product_dao = new ProductService();
 
 $carts = $cart_service->get_carts_by_user($user_id);
 

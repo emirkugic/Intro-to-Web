@@ -3,7 +3,9 @@ $(document).on("checkoutPageLoaded", function () {
 });
 
 function fetchCheckoutCartContents() {
-	fetch("../../data/cart.json")
+	const url = `http://localhost/web-intro/backend/scripts/cart/get_all_from_cart_by_user_id.php?user_id=1`;
+
+	fetch(url)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
@@ -33,23 +35,25 @@ function updateOrderTable(items) {
 	items.forEach((item) => {
 		cartSubtotal += item.price * item.quantity;
 		const row = `
-      <tr>
-        <td>${item.name} <strong class="mx-2">x</strong> ${item.quantity}</td>
-        <td>$${(item.price * item.quantity).toFixed(2)}</td>
-      </tr>
-    `;
+          <tr>
+            <td>${item.name} <strong class="mx-2">x</strong> ${
+			item.quantity
+		}</td>
+            <td>$${(item.price * item.quantity).toFixed(2)}</td>
+          </tr>
+        `;
 		orderTableBody.insertAdjacentHTML("beforeend", row);
 	});
 
 	const totalRow = `
-    <tr>
-      <td class="text-black font-weight-bold">
-        <strong>Order Total</strong>
-      </td>
-      <td class="text-black font-weight-bold">
-        <strong>$${cartSubtotal.toFixed(2)}</strong>
-      </td>
-    </tr>
-  `;
+        <tr>
+          <td class="text-black font-weight-bold">
+            <strong>Order Total</strong>
+          </td>
+          <td class="text-black font-weight-bold">
+            <strong>$${cartSubtotal.toFixed(2)}</strong>
+          </td>
+        </tr>
+      `;
 	orderTableBody.insertAdjacentHTML("beforeend", totalRow);
 }

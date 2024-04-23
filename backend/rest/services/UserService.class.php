@@ -24,18 +24,22 @@ class UserService
 
     public function add_user($user)
     {
-        // You can add additional business logic here (e.g., validations, hashing passwords)
         return $this->user_dao->add_user($user);
     }
 
     public function update_user($id, $user)
     {
-        // Ensure to handle sensitive updates like passwords with care
         return $this->user_dao->update_user($id, $user);
     }
 
     public function delete_user_by_id($id)
     {
         return $this->user_dao->delete_user_by_id($id);
+    }
+
+
+    public function get_user_by_email($email)
+    {
+        return $this->user_dao->get_user_by_email($email);
     }
 }
