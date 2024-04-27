@@ -1,13 +1,11 @@
 <?php
 
 require_once __DIR__ . '/../services/UserService.class.php';
-
-// Flight::route('/', function () {
-//     echo 'Hello from User Service!';
-// });
+require_once __DIR__ . '/../../middleware.php';
 
 Flight::group('/users', function () {
     Flight::route('GET /', function () {
+        authorize("ADMIN");
         $request = Flight::request();
         $order = isset($request->query['order']) ? $request->query['order'] : '-id';
 
@@ -17,6 +15,10 @@ Flight::group('/users', function () {
     });
 
     Flight::route('GET /@id', function ($id) {
+        $user = Flight::get('user');
+        if ($user['role'] !== 'ADMIN' && $user['userId'] != $id) {
+            Flight::halt(403, 'Access Denied');
+        }
         $user_service = new UserService();
         $user = $user_service->get_user_by_id($id);
         if ($user) {
@@ -26,8 +28,8 @@ Flight::group('/users', function () {
         }
     });
 
-    // Register new user
     Flight::route('POST /add', function () {
+        authorize("ADMIN");
         $data = Flight::request()->data->getData();
         $user_service = new UserService();
         $user = $user_service->add_user($data);
@@ -39,6 +41,10 @@ Flight::group('/users', function () {
     });
 
     Flight::route('PUT /update/@id', function ($id) {
+        $user = Flight::get('user');
+        if ($user['role'] !== 'ADMIN' && $user['userId'] != $id) {
+            Flight::halt(403, 'Access Denied');
+        }
         $data = Flight::request()->data->getData();
         $user_service = new UserService();
         $updated_user = $user_service->update_user($id, $data);
@@ -50,6 +56,10 @@ Flight::group('/users', function () {
     });
 
     Flight::route('DELETE /delete/@id', function ($id) {
+        $user = Flight::get('user');
+        if ($user['role'] !== 'ADMIN' && $user['userId'] != $id) {
+            Flight::halt(403, 'Access Denied');
+        }
         $user_service = new UserService();
         $success = $user_service->delete_user_by_id($id);
         if ($success) {
