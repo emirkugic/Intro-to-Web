@@ -36,4 +36,6 @@ require 'rest/routes/UserRoutes.php';
 require 'rest/routes/ProductRoutes.php';
 require 'rest/routes/CartRoutes.php';
 
+// TODO swagger, subscription for users and credit card API with Stripe duplex communication and deployment
+
 Flight::start();
