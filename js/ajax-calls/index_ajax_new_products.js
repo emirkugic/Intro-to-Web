@@ -4,7 +4,7 @@ $(document).on("newProductsPageLoaded", function () {
 
 function fetchNewProducts() {
 	fetch(
-		"http://localhost/web-intro/backend/scripts/products/get_new_products.php"
+		"http://localhost/web-intro/backend/products/"
 		// "../../backend/scripts/products/get_new_products.php"
 	)
 		.then((response) => response.json())
@@ -27,6 +27,9 @@ function renderNewProducts(products) {
 	while (rowContainer.children.length > columnsToKeep) {
 		rowContainer.removeChild(rowContainer.lastChild);
 	}
+
+	// slice to show only 4 products
+	products = products.slice(0, 3);
 
 	products.forEach((product) => {
 		const productColumnHTML = `

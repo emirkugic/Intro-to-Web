@@ -3,13 +3,32 @@
 require 'vendor/autoload.php';
 require 'config.php';
 
+
+Flight::route('OPTIONS /*', function () {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Access-Control-Max-Age: 86400");
+    die();
+});
+
+
 Flight::before('start', function (&$params, &$output) {
     $headers = getallheaders();
     $path = Flight::request()->url;
 
+
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Access-Control-Allow-Credentials: true");
+
+
     $excluded_paths = [
         '/auth/login',
-        '/auth/register'
+        '/auth/register',
+        '/products/',
+        '/products/popular'
     ];
 
     if (!in_array($path, $excluded_paths)) {
@@ -36,6 +55,6 @@ require 'rest/routes/UserRoutes.php';
 require 'rest/routes/ProductRoutes.php';
 require 'rest/routes/CartRoutes.php';
 
-// TODO swagger, subscription for users and credit card API with Stripe duplex communication and deployment
+// TODO swagger, mailer for subscription for users and credit card API with Stripe duplex communication and deployment
 
 Flight::start();

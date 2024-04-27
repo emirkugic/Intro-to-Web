@@ -5,6 +5,8 @@ let formSection = document.querySelector(".form-section");
 let loginButton = document.querySelector(".login-box .clkbtn");
 let signupButton = document.querySelector(".signup-box .clkbtn");
 
+let jwtToken = null;
+
 signup.addEventListener("click", () => {
 	slider.classList.add("moveslider");
 	formSection.classList.add("form-section-move");
@@ -22,62 +24,93 @@ loginButton.addEventListener("click", () => {
 });
 
 signupButton.addEventListener("click", () => {
-	const name = document.querySelector(".signup-box .name").value;
+	const firstName = document.querySelector(".signup-box .first-name").value;
+	const lastName = document.querySelector(".signup-box .last-name").value; // Ensure this is correct
 	const email = document.querySelector(".signup-box .email").value;
 	const password = document.querySelector(".signup-box .password").value;
-	const confirmPassword = document.querySelectorAll(".signup-box .password")[1]
-		.value;
-	if (password !== confirmPassword) {
-		alert("Passwords do not match!");
-		return;
-	}
-	registerUser(name, email, password);
+	// const confirmPassword = document.querySelectorAll(".signup-box .password")[1]
+	// 	.value;
+	// if (password !== confirmPassword) {
+	// 	alert("Passwords do not match!");
+	// 	return;
+	// }
+	const profilePictureUrl = document.querySelector(
+		".signup-box .profile-picture-url"
+	).value;
+	const phone = document.querySelector(".signup-box .phone").value;
+	registerUser(firstName, lastName, email, password, phone, profilePictureUrl);
 });
 
 function loginUser(email, password) {
-	fetch("http://localhost/web-intro/backend/scripts/user/login_user.php", {
+	fetch("http://localhost/web-intro/backend/auth/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ email: email, password: password }),
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return response.json();
+		})
 		.then((data) => {
-			if (data.error) {
-				alert("Login failed: " + data.error);
+			if (data.token) {
+				jwtToken = data.token;
+				console.log("Login successful, token received:", jwtToken);
+				// redirect to the home page
+				window.location.href = "http://127.0.0.1:5500/index.html#home";
 			} else {
-				alert("Login successful!");
-				console.log("Logged in user:", data.user);
+				alert("Login failed: " + data.error);
+				console.error("Login Failed:", data.error);
 			}
 		})
 		.catch((error) => {
+			alert("Login failed: " + error);
 			console.error("Error logging in:", error);
 		});
 }
 
-function registerUser(name, email, password) {
-	fetch("http://localhost/web-intro/backend/scripts/user/register_user.php", {
+function registerUser(
+	firstName,
+	lastName,
+	email,
+	password,
+	phone,
+	profilePictureUrl
+) {
+	fetch("http://localhost/web-intro/backend/auth/register", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			first_name: name,
+			first_name: firstName,
+			last_name: lastName,
 			email: email,
 			password: password,
+			profile_picture_url: profilePictureUrl,
+			phone: phone,
 		}),
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			return response.json();
+		})
 		.then((data) => {
 			if (data.error) {
 				alert("Registration failed: " + data.error);
 			} else {
 				alert("Registration successful!");
-				console.log("Registered user:", data.user);
+				// refresh the page
+				location.reload();
 			}
 		})
 		.catch((error) => {
+			alert("Registration failed: " + error);
 			console.error("Error registering:", error);
 		});
 }
