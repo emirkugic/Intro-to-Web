@@ -36,6 +36,6 @@ class ShippingAddressDao extends BaseDao
 
     public function delete_address_by_id($id)
     {
-        $this->delete('shipping_addresses', $id);
+        return $this->delete('shipping_addresses', $id);
     }
 }
