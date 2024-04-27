@@ -1,4 +1,3 @@
-// Listen for a custom event 'checkoutPageLoaded' to handle user data fetching for the checkout
 $(document).on("checkoutPageLoaded", function () {
 	fetchCheckoutUserData();
 });
@@ -34,7 +33,6 @@ function populateUserData(userData) {
 			document.getElementById("c_email_address").value = userData.emailAddress;
 		if (userData.phone)
 			document.getElementById("c_phone").value = userData.phone;
-		// No need to populate password
 		if (userData.orderNotes)
 			document.getElementById("c_order_notes").value = userData.orderNotes;
 	}

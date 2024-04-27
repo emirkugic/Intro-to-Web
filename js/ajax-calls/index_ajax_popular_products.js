@@ -1,10 +1,11 @@
-// Removed the DOMContentLoaded listener and instead listen for a custom event.
 $(document).on("popularProductsPageLoaded", function () {
 	fetchPopularProducts();
 });
 
 function fetchPopularProducts() {
-	fetch("../../data/index_popular_products.json")
+	fetch(
+		"http://localhost/web-intro/backend/scripts/products/popular_products.php"
+	)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
@@ -38,7 +39,7 @@ function renderPopularProducts(products) {
                 </div>
                 <div class="pt-3">
                     <h3>${product.title}</h3>
-                    <p><a href="#">$${product.price}</a></p>
+                    <p><a >$${product.price}</a></p>
                 </div>
             </div>
         </div>

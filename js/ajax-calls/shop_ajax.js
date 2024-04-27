@@ -1,5 +1,7 @@
 $(document).on("shopPageLoaded", function () {
-	fetch("../../data/shop_products.json")
+	fetch(
+		"http://localhost/web-intro/backend/scripts/products/get_all_products.php"
+	)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
@@ -25,17 +27,17 @@ function renderProducts(products) {
 		container.innerHTML = products
 			.map(
 				(product) => `
-            <div class="col-12 col-md-4 col-lg-3 mb-5">
-                <div class="product-item">
-                    <img src="../${product.image_url}" class="img-fluid product-thumbnail"/>
-                    <h3 class="product-title">${product.title}</h3>
-                    <strong class="product-price">$${product.price}</strong>
-                    <span class="icon-cross" data-id="${product.id}">
-                        <img src="../images/cross.svg" class="img-fluid" />
-                    </span>
-                </div>
-            </div>
-        `
+                    <div class="col-12 col-md-4 col-lg-3 mb-5">
+                        <div class="product-item">
+                            <img src="${product.image_url}" class="img-fluid product-thumbnail"/>
+                            <h3 class="product-title">${product.title}</h3>
+                            <strong class="product-price">$${product.price}</strong>
+                            <span class="icon-cross" data-id="${product.id}">
+                                <img src="images/cross.svg" class="img-fluid" />
+                            </span>
+                        </div>
+                    </div>
+                `
 			)
 			.join("");
 
@@ -52,22 +54,4 @@ function renderProducts(products) {
 
 function addToCart(productId) {
 	console.log(`Pretend to add product ID ${productId} to cart`);
-
-	// fetch("path/to/real/future/cart/api", {
-	// 	method: "POST",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 	},
-	// 	body: JSON.stringify({
-	// 		productId: productId,
-	// 		quantity: 1,
-	// 	}),
-	// })
-	// 	.then((response) => response.json())
-	// 	.then((data) => {
-	// 		console.log("Success:", data);
-	// 	})
-	// 	.catch((error) => {
-	// 		console.error("Error:", error);
-	// 	});
 }
