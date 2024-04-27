@@ -11,9 +11,9 @@ class CartService
         $this->cart_dao = new CartDao();
     }
 
-    public function get_all_carts($offset = 0, $limit = 25, $order = "-id")
+    public function get_all_carts($order = "-id")
     {
-        return $this->cart_dao->get_carts($offset, $limit, $order);
+        return $this->cart_dao->get_carts($order);
     }
 
     public function get_cart_by_id($cart_id)

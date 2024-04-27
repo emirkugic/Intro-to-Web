@@ -13,9 +13,9 @@ class ProductService
     }
 
 
-    public function get_all_products($offset = 0, $limit = 25, $order = "-id")
+    public function get_all_products($order = "-id")
     {
-        return $this->product_dao->get_products($offset, $limit, $order);
+        return $this->product_dao->get_products($order);
     }
 
 
@@ -49,8 +49,8 @@ class ProductService
     }
 
 
-    public function get_products_by_popularity($offset = 0, $limit = 25)
+    public function get_products_by_popularity()
     {
-        return $this->product_dao->get_products_by_popularity($offset, $limit);
+        return $this->product_dao->get_products_by_popularity();
     }
 }

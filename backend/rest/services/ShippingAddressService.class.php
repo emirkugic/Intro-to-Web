@@ -12,9 +12,9 @@ class ShippingAddressService
         $this->shipping_address_dao = new ShippingAddressDao();
     }
 
-    public function get_all_addresses($user_id, $offset = 0, $limit = 25, $order = "-id")
+    public function get_all_addresses($user_id,  $order = "-id")
     {
-        return $this->shipping_address_dao->get_addresses_by_user($user_id, $offset, $limit, $order);
+        return $this->shipping_address_dao->get_addresses_by_user($user_id, $order);
     }
 
     public function get_address_by_id($id)

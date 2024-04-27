@@ -21,18 +21,15 @@ class BaseDao
   {
     $response = $this->connection->rollBack();
   }
+
   protected function parse_order($order)
   {
     $order_direction = substr($order, 0, 1) == '-' ? 'DESC' : 'ASC';
-
     $order_column_raw = substr($order, 1);
-    $order_column_raw = substr($order, 1);
-
     $order_column = trim($this->connection->quote($order_column_raw), "'");
 
     return [$order_column, $order_direction];
   }
-
 
   public function __construct($table)
   {
@@ -63,7 +60,7 @@ class BaseDao
     $query .= ")";
 
     $stmt = $this->connection->prepare($query);
-    $stmt->execute($entity); // SQL injection prevention
+    $stmt->execute($entity);
     $entity['id'] = $this->connection->lastInsertId();
     return $entity;
   }
@@ -95,18 +92,6 @@ class BaseDao
     return reset($results);
   }
 
-  protected function execute($query, $params)
-  {
-    $prepared_statement = $this->connection->prepare($query);
-    if ($params) {
-      foreach ($params as $key => $param) {
-        $prepared_statement->bindValue($key, $param);
-      }
-    }
-    $prepared_statement->execute();
-    return $prepared_statement;
-  }
-
   public function add($entity)
   {
     return $this->insert($this->table, $entity);
@@ -122,13 +107,15 @@ class BaseDao
     return $this->query_unique("SELECT * FROM " . $this->table . " WHERE id = :id", ["id" => $id]);
   }
 
-  public function get_all($offset = 0, $limit = 25, $order = "-id")
+  public function get_all($order = "-id")
   {
     list($order_column, $order_direction) = self::parse_order($order);
+    return $this->query("SELECT * FROM " . $this->table . " ORDER BY {$order_column} {$order_direction}", []);
+  }
 
-    return $this->query("SELECT *
-                         FROM " . $this->table . "
-                         ORDER BY {$order_column} {$order_direction}
-                         LIMIT {$limit} OFFSET {$offset}", []);
+  public function delete($table, $id, $id_column = "id")
+  {
+    $stmt = $this->connection->prepare("DELETE FROM {$table} WHERE {$id_column} = :id");
+    $stmt->execute(['id' => $id]);
   }
 }

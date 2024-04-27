@@ -17,9 +17,9 @@ class UserService
         return $this->user_dao->get_user_by_id($id);
     }
 
-    public function get_all_users($offset = 0, $limit = 25, $order = "-id")
+    public function get_all_users($order = "-id")
     {
-        return $this->user_dao->get_all_users($offset, $limit, $order);
+        return $this->user_dao->get_all_users($order);
     }
 
     public function add_user($user)

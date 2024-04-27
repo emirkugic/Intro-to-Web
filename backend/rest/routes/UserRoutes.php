@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/../services/UserService.class.php';
 
-// Define a route and assign a function to handle the request.
 Flight::route('/', function () {
     echo 'Hello from User Service!';
 });

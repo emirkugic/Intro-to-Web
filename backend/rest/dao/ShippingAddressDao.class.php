@@ -9,14 +9,13 @@ class ShippingAddressDao extends BaseDao
         parent::__construct("shipping_addresses");
     }
 
-    public function get_addresses_by_user($user_id, $offset = 0, $limit = 25, $order = "-id")
+    public function get_addresses_by_user($user_id, $order = "-id")
     {
         list($order_column, $order_direction) = self::parse_order($order);
         $query = "SELECT *
                   FROM shipping_addresses
                   WHERE user_id = :user_id
-                  ORDER BY {$order_column} {$order_direction}
-                  LIMIT {$limit} OFFSET {$offset}";
+                  ORDER BY {$order_column} {$order_direction}";
         return $this->query($query, ["user_id" => $user_id]);
     }
 
@@ -37,6 +36,6 @@ class ShippingAddressDao extends BaseDao
 
     public function delete_address_by_id($id)
     {
-        $this->execute("DELETE FROM shipping_addresses WHERE id = :id", ["id" => $id]);
+        $this->delete('shipping_addresses', $id);
     }
 }
