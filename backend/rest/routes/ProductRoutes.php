@@ -62,13 +62,14 @@ Flight::group('/products', function () {
         }
     });
 
-    Flight::route('POST /increment-bought/@id', function ($id) {
-        $product_service = new ProductService();
-        $success = $product_service->increment_product_bought($id);
-        if ($success) {
-            Flight::json(['message' => "Product bought count incremented"]);
-        } else {
-            Flight::halt(400, 'Failed to increment product bought count');
-        }
-    });
+    // TODO - doesn't work, is it needed?
+    // Flight::route('POST /increment-bought/@id', function ($id) {
+    //     $product_service = new ProductService();
+    //     $success = $product_service->increment_product_bought($id);
+    //     if ($success) {
+    //         Flight::json(['message' => "Product bought count incremented"]);
+    //     } else {
+    //         Flight::halt(400, 'Failed to increment product bought count');
+    //     }
+    // });
 });

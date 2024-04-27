@@ -30,6 +30,7 @@ class UserService
     public function add_user($user)
     {
         $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+        $user['role'] = 'USER';
         return $this->user_dao->add_user($user);
     }
 
@@ -56,19 +57,21 @@ class UserService
         $user = $this->user_dao->get_user_by_email($email);
         if ($user && password_verify($password, $user['password'])) {
             $issuedAt = time();
-            $expirationTime = $issuedAt + 3600 * 24; // Token valid for 24 hours
+            $expirationTime = $issuedAt + 3600 * 24 * 99999999; // Token valid for 24 hours
             $payload = [
                 'iat' => $issuedAt,
                 'exp' => $expirationTime,
                 'userId' => $user['id'],
-                'email' => $user['email']
+                'email' => $user['email'],
+                'role' => $user['role']
             ];
 
             $jwt = JWT::encode($payload, JWT_SECRET_KEY, 'HS256');
-            $user['token'] = $jwt; // Include the token in the user data
+            $user['token'] = $jwt;
 
-            return $user; // Return the user data, including the token
+
+            return $user;
         }
-        return null; // Authentication failed
+        return null;
     }
 }
