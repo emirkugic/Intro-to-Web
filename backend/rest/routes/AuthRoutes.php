@@ -40,7 +40,8 @@ Flight::group('/auth', function () {
         $user_service = new UserService();
         $user = $user_service->authenticate_user($email, $password);
         if ($user) {
-            Flight::json($user); // This will now include the token
+            $jwt = $user['token'];
+            Flight::json(['token' => $jwt]);
         } else {
             Flight::halt(401, "Invalid email or password");
         }

@@ -35,7 +35,7 @@ class ProductDao extends BaseDao
 
     public function delete_product_by_id($product_id)
     {
-        $this->delete('products', $product_id);
+        return $this->delete('products', $product_id);
     }
 
     public function increment_product_bought($product_id)
@@ -43,6 +43,8 @@ class ProductDao extends BaseDao
         $query = "UPDATE products SET times_bought = times_bought + 1 WHERE id = :id";
         $stmt = $this->connection->prepare($query);
         $stmt->execute(['id' => $product_id]);
+
+        return $stmt->rowCount() > 0;
     }
 
     public function get_products_by_popularity()
