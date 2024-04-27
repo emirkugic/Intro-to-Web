@@ -24,6 +24,7 @@ class UserService
 
     public function add_user($user)
     {
+        $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
         return $this->user_dao->add_user($user);
     }
 
@@ -39,8 +40,18 @@ class UserService
     }
 
 
-    public function get_user_by_email($email)
+    // public function get_user_by_email($email)
+    // {
+    //     return $this->user_dao->get_user_by_email($email);
+    // }
+
+    // for login
+    public function authenticate_user($email, $password)
     {
-        return $this->user_dao->get_user_by_email($email);
+        $user = $this->user_dao->get_user_by_email($email);
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return null;
     }
 }
