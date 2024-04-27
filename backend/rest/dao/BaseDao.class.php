@@ -77,7 +77,10 @@ class BaseDao
     $stmt = $this->connection->prepare($query);
     $entity['id'] = $id;
     $stmt->execute($entity);
+
+    return $stmt->rowCount() > 0;
   }
+
 
   protected function query($query, $params)
   {
@@ -117,5 +120,7 @@ class BaseDao
   {
     $stmt = $this->connection->prepare("DELETE FROM {$table} WHERE {$id_column} = :id");
     $stmt->execute(['id' => $id]);
+
+    return $stmt->rowCount() > 0;
   }
 }

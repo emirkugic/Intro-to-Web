@@ -32,7 +32,7 @@ class UserDao extends BaseDao
 
     public function delete_user_by_id($id)
     {
-        $this->delete('users', $id);
+        return $this->delete('users', $id);
     }
 
     public function get_user_by_email($email)

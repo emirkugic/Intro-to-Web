@@ -29,7 +29,8 @@ class UserService
 
     public function update_user($id, $user)
     {
-        return $this->user_dao->update_user($id, $user);
+        $success = $this->user_dao->update_user($id, $user);
+        return $success ? $user : false;
     }
 
     public function delete_user_by_id($id)
