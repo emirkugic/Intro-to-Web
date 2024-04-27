@@ -2,6 +2,11 @@
 
 require_once __DIR__ . '/../dao/UserDao.class.php';
 
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+
 class UserService
 {
 
@@ -50,8 +55,20 @@ class UserService
     {
         $user = $this->user_dao->get_user_by_email($email);
         if ($user && password_verify($password, $user['password'])) {
-            return $user;
+            $issuedAt = time();
+            $expirationTime = $issuedAt + 3600 * 24; // Token valid for 24 hours
+            $payload = [
+                'iat' => $issuedAt,
+                'exp' => $expirationTime,
+                'userId' => $user['id'],
+                'email' => $user['email']
+            ];
+
+            $jwt = JWT::encode($payload, JWT_SECRET_KEY, 'HS256');
+            $user['token'] = $jwt; // Include the token in the user data
+
+            return $user; // Return the user data, including the token
         }
-        return null;
+        return null; // Authentication failed
     }
 }
