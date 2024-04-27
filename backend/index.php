@@ -34,5 +34,6 @@ Flight::before('start', function (&$params, &$output) {
 require 'rest/routes/AuthRoutes.php';
 require 'rest/routes/UserRoutes.php';
 require 'rest/routes/ProductRoutes.php';
+require 'rest/routes/CartRoutes.php';
 
 Flight::start();

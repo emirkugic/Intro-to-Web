@@ -35,7 +35,7 @@ class CartDao extends BaseDao
 
     public function delete_cart_by_id($cart_id)
     {
-        $this->delete('cart', $cart_id);
+        return $this->delete('cart', $cart_id);
     }
 
     public function get_carts_by_user($user_id, $order = "-id")
