@@ -29,16 +29,25 @@ Flight::group('/carts', function () {
         Flight::json($cart);
     });
 
-    Flight::route('POST /', function () {
+    Flight::route('POST /carts/add', function () {
+        $data = Flight::request()->data->getData();
         $cart_service = new CartService();
-        $cart = Flight::request()->data->getData();
-        $result = $cart_service->add_cart($cart);
+
+        $user = Flight::get('user');
+
+        $result = $cart_service->add_cart([
+            'user_id' => $user['userId'],
+            'product_id' => $data['productId'],
+            'quantity' => $data['quantity']
+        ]);
         if ($result) {
             Flight::json($result, 201);
         } else {
-            Flight::halt(400, 'Failed to add cart');
+            Flight::halt(400, 'Failed to add to cart');
         }
     });
+
+
 
     Flight::route('PUT /@cart_id', function ($cart_id) {
         $user = Flight::get('user');

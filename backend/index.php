@@ -5,30 +5,38 @@ require 'config.php';
 
 
 Flight::route('OPTIONS /*', function () {
+    error_log('OPTIONS request received');
+
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     header("Access-Control-Max-Age: 86400");
-    die();
+    http_response_code(200);
+    exit();
 });
 
 
-Flight::before('start', function (&$params, &$output) {
-    $headers = getallheaders();
-    $path = Flight::request()->url;
 
+Flight::before('start', function (&$params, &$output) {
+
+    $headers = getallheaders();
+    $requestMethod = $_SERVER['REQUEST_METHOD'];
+    $requestUri = $_SERVER['REQUEST_URI'];
+    error_log("Request method: $requestMethod, URI: $requestUri, Headers: " . json_encode($headers));
 
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     header("Access-Control-Allow-Credentials: true");
 
+    $headers = getallheaders();
+    $path = Flight::request()->url;
 
     $excluded_paths = [
         '/auth/login',
         '/auth/register',
         '/products/',
-        '/products/popular'
+        '/products/popular',
     ];
 
     if (!in_array($path, $excluded_paths)) {
