@@ -15,13 +15,13 @@
 
 <div class="untree_co-section">
 	<div class="container">
-		<div class="row mb-5">
+		<!-- <div class="row mb-5">
 			<div class="col-md-12">
 				<div class="border p-4 rounded" role="alert">
 					Returning customer? <a href="login.html">Click here</a> to login
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class="col-md-6 mb-5 mb-md-0">
 				<h2 class="h3 mb-3 text-black">Billing Details</h2>
@@ -90,7 +90,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="c_create_account" class="text-black" data-bs-toggle="collapse"
 							href="#create_an_account" role="button" aria-expanded="false"
 							aria-controls="create_an_account"><input type="checkbox" value="1" id="c_create_account" />
@@ -115,9 +115,27 @@
 						<label for="c_order_notes" class="text-black">Order Notes</label>
 						<textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
 							placeholder="Write your notes here..."></textarea>
+					</div> -->
+
+
+					<!-- Save Address Checkbox and Save Button -->
+					<div class="form-group">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" id="c_save_address"> Save this address?
+							</label>
+						</div>
+
+
+						<button type="button" class="btn btn-black" onclick="saveOrUpdateAddress()">Save
+							Address
+						</button>
 					</div>
+
+
 				</div>
 			</div>
+
 
 			<div class="col-md-6">
 				<div class="row mb-5">

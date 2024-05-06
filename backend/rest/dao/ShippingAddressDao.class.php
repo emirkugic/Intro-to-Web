@@ -38,4 +38,21 @@ class ShippingAddressDao extends BaseDao
     {
         return $this->delete('shipping_addresses', $id);
     }
+
+
+    /*
+    SELECT sa.country, u.first_name, u.last_name, sa.company_name, sa.address, sa.state, sa.zip_code, u.email, u.phone
+    FROM shipping_addresses sa 
+    JOIN users u ON u.id = sa.user_id
+    WHERE u.id = 2
+    */
+
+    public function get_full_address($user_id)
+    {
+        $query = "SELECT  sa.country, u.first_name, u.last_name, sa.company_name, sa.address, sa.state, sa.zip_code, u.email, u.phone
+                  FROM shipping_addresses sa 
+                  JOIN users u ON u.id = sa.user_id
+                  WHERE u.id = :user_id";
+        return $this->query($query, ["user_id" => $user_id]);
+    }
 }

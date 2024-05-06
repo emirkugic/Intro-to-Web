@@ -36,4 +36,10 @@ class ShippingAddressService
     {
         return $this->shipping_address_dao->delete_address_by_id($id);
     }
+
+
+    public function get_full_address($user_id)
+    {
+        return $this->shipping_address_dao->get_full_address($user_id);
+    }
 }

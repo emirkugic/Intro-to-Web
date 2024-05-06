@@ -4,9 +4,19 @@ require_once __DIR__ . '/../services/ShippingAddressService.class.php';
 require_once __DIR__ . '/../../middleware.php';
 
 Flight::group('/shipping-addresses', function () {
+
+    Flight::route('GET /full-address', function () {
+        $user = Flight::get('user');
+        $user_id = $user['userId'];
+
+        $shipping_address_service = new ShippingAddressService();
+        $address = $shipping_address_service->get_full_address($user_id);
+        Flight::json($address);
+    });
+
     Flight::route('GET /user/@user_id', function ($user_id) {
         $user = Flight::get('user');
-        if ($user['role'] !== 'ADMIN' && $user['userId'] != $user_id) {
+        if ($user['role'] !== 'USER' && $user['userId'] != $user_id) {
             Flight::halt(403, 'Access Denied');
             return;
         }

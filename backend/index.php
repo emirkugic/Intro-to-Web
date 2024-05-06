@@ -48,8 +48,9 @@ require 'rest/routes/AuthRoutes.php';
 require 'rest/routes/UserRoutes.php';
 require 'rest/routes/ProductRoutes.php';
 require 'rest/routes/CartRoutes.php';
+require 'rest/routes/ShippingAddressRoutes.php';
 
-// TODO: Implement swagger, CORS, mailer for subscriptions for users, credit card API with Stripe duplex communication, and deployment
+// TODO: Implement save address button, mailer for subscriptions for users, credit card API with Stripe duplex communication, and deployment
 
 Flight::start();
 

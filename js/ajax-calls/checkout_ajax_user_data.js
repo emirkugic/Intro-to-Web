@@ -3,10 +3,22 @@ $(document).on("checkoutPageLoaded", function () {
 });
 
 function fetchCheckoutUserData() {
-	fetch("../../data/checkout_user_data.json")
+	const url =
+		"http://localhost/web-intro/backend/shipping-addresses/full-address";
+	fetch(url, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+		},
+	})
 		.then((response) => response.json())
-		.then((userData) => {
-			populateUserData(userData);
+		.then((data) => {
+			if (data && data.length > 0) {
+				populateUserData(data[0]);
+			} else {
+				console.error("No user data available");
+			}
 		})
 		.catch((error) => {
 			console.error("Error fetching user data:", error);
@@ -14,27 +26,29 @@ function fetchCheckoutUserData() {
 }
 
 function populateUserData(userData) {
-	if (Object.keys(userData).length !== 0) {
-		if (userData.country)
-			document.getElementById("c_country").value = userData.country;
-		if (userData.firstName)
-			document.getElementById("c_fname").value = userData.firstName;
-		if (userData.lastName)
-			document.getElementById("c_lname").value = userData.lastName;
-		if (userData.companyName)
-			document.getElementById("c_companyname").value = userData.companyName;
-		if (userData.address)
-			document.getElementById("c_address").value = userData.address;
-		if (userData.stateCountry)
-			document.getElementById("c_state_country").value = userData.stateCountry;
-		if (userData.postalZip)
-			document.getElementById("c_postal_zip").value = userData.postalZip;
-		if (userData.emailAddress)
-			document.getElementById("c_email_address").value = userData.emailAddress;
-		if (userData.phone)
-			document.getElementById("c_phone").value = userData.phone;
-		if (userData.orderNotes)
-			document.getElementById("c_order_notes").value = userData.orderNotes;
+	if (userData) {
+		if (document.getElementById("c_country"))
+			document.getElementById("c_country").value = userData.country || "";
+		if (document.getElementById("c_fname"))
+			document.getElementById("c_fname").value = userData.first_name || "";
+		if (document.getElementById("c_lname"))
+			document.getElementById("c_lname").value = userData.last_name || "";
+		if (document.getElementById("c_companyname"))
+			document.getElementById("c_companyname").value =
+				userData.company_name || "";
+		if (document.getElementById("c_address"))
+			document.getElementById("c_address").value = userData.address || "";
+		if (document.getElementById("c_state_country"))
+			document.getElementById("c_state_country").value = userData.state || "";
+		if (document.getElementById("c_postal_zip"))
+			document.getElementById("c_postal_zip").value = userData.zip_code || "";
+		if (document.getElementById("c_email_address"))
+			document.getElementById("c_email_address").value = userData.email || "";
+		if (document.getElementById("c_phone"))
+			document.getElementById("c_phone").value = userData.phone || "";
+		if (document.getElementById("c_order_notes"))
+			document.getElementById("c_order_notes").value =
+				userData.order_notes || "";
 	}
 }
 
