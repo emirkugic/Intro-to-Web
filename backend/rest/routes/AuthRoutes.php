@@ -27,6 +27,43 @@ Flight::group('/auth', function () {
         }
     });
 
+
+    /**
+     * @OA\Post(
+     *     path="/auth/login",
+     *     summary="Login with email and password",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email","password"},
+     *             @OA\Property(property="email", type="string", format="email", example="user@example.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="Password!"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful authentication",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="token", type="string", example="JWT_token_here")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad request or missing parameters",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Email and password are required")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized: invalid email or password",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Invalid email or password")
+     *         )
+     *     )
+     * )
+     */
     Flight::route('POST /login', function () {
         $data = Flight::request()->data->getData();
         $email = trim($data['email']);

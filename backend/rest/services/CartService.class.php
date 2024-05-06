@@ -46,4 +46,15 @@ class CartService
     {
         return $this->cart_dao->update_cart_quantity($cart_id, $quantity);
     }
+
+
+    public function get_carts_with_products_by_user($user_id)
+    {
+        return $this->cart_dao->get_carts_with_products_by_user($user_id);
+    }
+
+    public function increment_cart_quantity($cart_id)
+    {
+        return $this->cart_dao->get_cart_by_id($cart_id);
+    }
 }

@@ -3,7 +3,7 @@ $(document).on("popularProductsPageLoaded", function () {
 });
 
 function fetchPopularProducts() {
-	fetch("http://localhost/web-intro/backend/products/")
+	fetch("http://localhost/web-intro/backend/products/all")
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");

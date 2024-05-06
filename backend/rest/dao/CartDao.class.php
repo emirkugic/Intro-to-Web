@@ -56,4 +56,15 @@ class CartDao extends BaseDao
         $stmt->execute(['cart_id' => $cart_id, 'quantity' => $quantity]);
         return $stmt->rowCount();
     }
+
+
+    // used to get cart contents by user id
+    public function get_carts_with_products_by_user($user_id)
+    {
+        $query = "SELECT c.id, p.title, p.price, p.image_url, c.quantity
+              FROM cart c
+              JOIN products p ON p.id = c.product_id
+              WHERE c.user_id = :user_id";
+        return $this->query($query, ['user_id' => $user_id]);
+    }
 }

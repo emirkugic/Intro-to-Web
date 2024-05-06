@@ -4,7 +4,7 @@ $(document).on("newProductsPageLoaded", function () {
 
 function fetchNewProducts() {
 	fetch(
-		"http://localhost/web-intro/backend/products/"
+		"http://localhost/web-intro/backend/products/all"
 		// "../../backend/scripts/products/get_new_products.php"
 	)
 		.then((response) => response.json())

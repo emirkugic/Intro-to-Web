@@ -57,7 +57,7 @@ class UserService
         $user = $this->user_dao->get_user_by_email($email);
         if ($user && password_verify($password, $user['password'])) {
             $issuedAt = time();
-            $expirationTime = $issuedAt + 3600 * 24 * 99999999; // Token valid for 24 hours
+            $expirationTime = $issuedAt + 3600 * 24;
             $payload = [
                 'iat' => $issuedAt,
                 'exp' => $expirationTime,

@@ -4,7 +4,20 @@ require_once __DIR__ . '/../services/ProductService.class.php';
 require_once __DIR__ . '/../../middleware.php';
 
 Flight::group('/products', function () {
-    Flight::route('GET /', function () {
+
+    /**
+     * 
+     * @OA\Get(
+     *    path="/products/all",
+     *    tags={"Products"},
+     *    summary="Get all products",
+     *      @OA\Response(
+     *        response=200,
+     *        description="List of products"
+     *    )
+     * )
+     *  */
+    Flight::route('GET /all', function () {
         $order = Flight::request()->query['order'] ?? '-id';
         $product_service = new ProductService();
         $products = $product_service->get_all_products($order);

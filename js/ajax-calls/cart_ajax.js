@@ -1,24 +1,31 @@
 $(document).on("cartPageLoaded", function () {
 	waitForElement(".site-blocks-table table tbody", function () {
 		fetchCartContents();
-		attachEventListeners();
+		attachQuantityEventListeners();
+		attachDeleteEventListeners();
 	});
 });
 
 function fetchCartContents() {
-	const url =
-		"http://localhost/web-intro/backend/scripts/cart/get_all_from_cart_by_user_id.php";
-	const data = JSON.stringify({ user_id: 1 });
+	const url = "http://localhost/web-intro/backend/carts/user-cart";
 
 	fetch(url, {
-		method: "POST",
+		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
+			Authorization: "Bearer " + localStorage.getItem("jwtToken"),
 		},
-		body: data,
 	})
-		.then((response) => response.json())
-		.then((cart) => renderCart(cart.items))
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return response.json();
+		})
+		.then((cart) => {
+			renderCart(cart.items);
+		})
+
 		.catch((error) => console.error("Error fetching cart:", error));
 }
 
@@ -83,17 +90,20 @@ function updateQuantity(cartId, change) {
 	newQuantity = Math.max(1, newQuantity);
 	quantityInput.value = newQuantity;
 
-	fetch(
-		"http://localhost/web-intro/backend/scripts/cart/update_cart_quantity_by_id.php",
-		{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ cart_id: cartId, new_quantity: newQuantity }),
-		}
-	)
-		.then((response) => response.json())
+	fetch(`http://localhost/web-intro/backend/carts/update-quantity/${cartId}`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+		},
+		body: JSON.stringify({ new_quantity: newQuantity }),
+	})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Failed to update cart quantity");
+			}
+			return response.json();
+		})
 		.then((data) => {
 			if (data.success) {
 				const row = document.querySelector(`tr[data-cart-id="${cartId}"]`);
@@ -120,17 +130,19 @@ function attachDeleteEventListeners() {
 }
 
 function deleteCartItem(cartId) {
-	fetch(
-		"http://localhost/web-intro/backend/scripts/cart/delete_from_cart_by_id.php",
-		{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ cart_id: cartId }),
-		}
-	)
-		.then((response) => response.json())
+	fetch(`http://localhost/web-intro/backend/carts/${cartId}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+		},
+	})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Failed to delete cart item");
+			}
+			return response.json();
+		})
 		.then((data) => {
 			if (data.success) {
 				const row = document.querySelector(`tr[data-cart-id="${cartId}"]`);
