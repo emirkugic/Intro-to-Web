@@ -4,6 +4,7 @@ require_once __DIR__ . '/../services/UserService.class.php';
 require_once __DIR__ . '/../../middleware.php';
 
 Flight::group('/users', function () {
+
     Flight::route('GET /', function () {
         authorize("ADMIN");
         $request = Flight::request();
