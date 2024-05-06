@@ -3,21 +3,26 @@ $(document).on("checkoutPageLoaded", function () {
 });
 
 function fetchCheckoutCartContents() {
-	const url = `http://localhost/web-intro/backend/scripts/cart/get_all_from_cart_by_user_id.php?user_id=1`;
+	const url = "http://localhost/web-intro/backend/carts/user-cart";
 
-	fetch(url)
+	fetch(url, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+		},
+	})
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
 			return response.json();
 		})
-		.then((data) => {
-			updateOrderTable(data.items);
+		.then((cart) => {
+			updateOrderTable(cart.items);
 		})
-		.catch((error) => {
-			console.error("Error:", error);
-		});
+
+		.catch((error) => console.error("Error fetching cart:", error));
 }
 
 function updateOrderTable(items) {
