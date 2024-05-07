@@ -59,7 +59,6 @@ function loginUser(email, password) {
 			if (data.token) {
 				localStorage.setItem("jwtToken", data.token);
 				console.log("Login successful, token received:", data.token);
-				// redirect to the home page
 				window.location.href = "http://127.0.0.1:5500/index.html#home";
 			} else {
 				alert("Login failed: " + data.error);

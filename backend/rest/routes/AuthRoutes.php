@@ -3,6 +3,9 @@
 require_once __DIR__ . '/../services/UserService.class.php';
 
 Flight::group('/auth', function () {
+
+
+
     Flight::route('POST /register', function () {
         $data = Flight::request()->data->getData();
 
@@ -31,36 +34,38 @@ Flight::group('/auth', function () {
     /**
      * @OA\Post(
      *     path="/auth/login",
-     *     summary="Login with email and password",
-     *     tags={"Authentication"},
+     *     summary="Login user",
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *             required={"email","password"},
-     *             @OA\Property(property="email", type="string", format="email", example="user@example.com"),
-     *             @OA\Property(property="password", type="string", format="password", example="Password!"),
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"email", "password"},
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string",
+     *                     format="email",
+     *                     example="user@example.com"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string",
+     *                     example="yourpassword"
+     *                 )
+     *             )
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Successful authentication",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="token", type="string", example="JWT_token_here")
-     *         )
+     *         description="Successful login"
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="Bad request or missing parameters",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Email and password are required")
-     *         )
+     *         description="Invalid request"
      *     ),
      *     @OA\Response(
      *         response=401,
-     *         description="Unauthorized: invalid email or password",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Invalid email or password")
-     *         )
+     *         description="Unauthorized"
      *     )
      * )
      */
