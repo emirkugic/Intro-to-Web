@@ -6,6 +6,9 @@ define('BASE_URL', 'http://localhost/web-intro/backend/');
 
 error_reporting(0);
 
-$openapi = \OpenApi\Generator::scan(['../../../rest/routes', './']);
+$openapi = \OpenApi\Generator::scan(['../../../rest', './'], ['pattern' => '*.php']);
+// $openapi = \OpenApi\Util::finder(['../../../rest/routes', './'], NULL, '*.php');
+// $openapi = \OpenApi\scan(['../../../rest', './'], ['pattern' => '*.php']);
+
 header('Content-Type: application/x-yaml');
 echo $openapi->toYaml();

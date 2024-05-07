@@ -3,7 +3,7 @@
 /**
  * @OA\Info(
  *   title="API",
- *   description="Intro to web API",
+ *   description="Web programming API",
  *   version="1.0",
  *   @OA\Contact(
  *     email="emir.kugic@stu.ibu.edu.ba",
@@ -16,7 +16,7 @@
  *   )
  * )
  * @OA\SecurityScheme(
- *     securityScheme="ApiKeyAuth",
+ *     securityScheme="ApiKey",
  *     type="apiKey",
  *     in="header",
  *     name="Authentication"
