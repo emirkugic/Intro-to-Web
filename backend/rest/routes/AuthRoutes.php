@@ -8,99 +8,32 @@ Flight::group('/auth', function () {
     /**
      * @OA\Post(
      *     path="/auth/register",
-     *     summary="Register user",
+     *     summary="Register a new user",
      *     tags={"Authentication"},
      *     @OA\RequestBody(
+     *         description="User data required for registration",
      *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 required={"first_name", "last_name", "email", "password", "profile_picture_url", "phone"},
-     *                 @OA\Property(
-     *                     property="first_name",
-     *                     type="string",
-     *                     example="John"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="last_name",
-     *                     type="string",
-     *                     example="Doe"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="email",
-     *                     type="string",
-     *                     format="email",
-     *                     example="user@example.com"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password",
-     *                     type="string",
-     *                     example="yourpassword"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="profile_picture_url",
-     *                     type="string",
-     *                     example="https://example.com/profile.jpg"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="phone",
-     *                     type="string",
-     *                     example="1234567890"
-     *                 )
-     *             )
+     *         @OA\JsonContent(
+     *             required={"first_name", "last_name", "email", "password"},
+     *             @OA\Property(property="first_name", type="string", example="John"),
+     *             @OA\Property(property="last_name", type="string", example="Doe"),
+     *             @OA\Property(property="email", type="string", format="email", example="emir5@gmail.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="emir"),
+     *             @OA\Property(property="phone", type="string", example="1234567890"),
+     *             @OA\Property(property="profile_picture_url", type="string", nullable=true, example="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg")
      *         )
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="User registered successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="id",
-     *                 type="integer",
-     *                 example="1"
-     *             ),
-     *             @OA\Property(
-     *                 property="first_name",
-     *                 type="string",
-     *                 example="John"
-     *             ),
-     *             @OA\Property(
-     *                 property="last_name",
-     *                 type="string",
-     *                 example="Doe"
-     *             ),
-     *             @OA\Property(
-     *                 property="email",
-     *                 type="string",
-     *                 format="email",
-     *                 example="user@example.com"
-     *             ),
-     *             @OA\Property(
-     *                 property="profile_picture_url",
-     *                 type="string",
-     *                 example="https://example.com/profile.jpg"
-     *             ),
-     *             @OA\Property(
-     *                 property="phone",
-     *                 type="string",
-     *                 example="1234567890"
-     *             )
-     *         )
+     *         description="User successfully registered",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="Bad request",
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 example="Missing or invalid parameter: {parameter_name}"
-     *             )
-     *         )
+     *         description="Missing or invalid parameters"
      *     )
      * )
      */
-
     Flight::route('POST /register', function () {
         $data = Flight::request()->data->getData();
 
@@ -129,28 +62,33 @@ Flight::group('/auth', function () {
     /**
      * @OA\Post(
      *     path="/auth/login",
-     *     summary="Login user",
+     *     summary="Authenticate a user and return a JWT",
      *     tags={"Authentication"},
      *     @OA\RequestBody(
+     *         description="Credentials needed to login",
      *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 required={"email", "password"},
-     *                 @OA\Property(
-     *                     property="email",
-     *                     type="string",
-     *                     format="email",
-     *                     example="user@example.com"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password",
-     *                     type="string",
-     *                     example="yourpassword"
-     *                 )
-     *             )
+     *         @OA\JsonContent(
+     *             required={"email", "password"},
+     *             @OA\Property(property="email", type="string", format="email", example="emir@gmail.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="emir")
      *         )
      *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Authentication successful",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="token", type="string", description="JWT for authenticated user")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Email and password are required"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Invalid email or password"
+     *     )
      * )
      */
     Flight::route('POST /login', function () {
