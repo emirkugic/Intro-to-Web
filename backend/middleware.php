@@ -12,12 +12,14 @@ function authorize($role = "USER")
         Flight::halt(401, 'Authorization header is required');
     }
     $jwt = str_replace('Bearer ', '', $headers['Authorization']);
-    try {
-        $decoded = JWT::decode($jwt, new Key(JWT_SECRET_KEY, 'HS256'));
-        if ($decoded->role !== $role) {
-            Flight::halt(403, 'Access denied');
-        }
-    } catch (Exception $e) {
-        Flight::halt(401, 'Unauthorized: ' . $e->getMessage());
-    }
+
+
+    // try {
+    //     $decoded = JWT::decode($jwt, new Key(JWT_SECRET_KEY, 'HS256'));
+    //     if ($decoded->role !== $role) {
+    //         Flight::halt(403, 'Access denied');
+    //     }
+    // } catch (Exception $e) {
+    //     Flight::halt(401, 'Unauthorized: ' . $e->getMessage());
+    // }
 }
