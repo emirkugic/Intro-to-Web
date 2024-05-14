@@ -9,14 +9,13 @@ class ShippingAddressDao extends BaseDao
         parent::__construct("shipping_addresses");
     }
 
-    public function get_addresses_by_user($user_id, $offset = 0, $limit = 25, $order = "-id")
+    public function get_addresses_by_user($user_id, $order = "-id")
     {
         list($order_column, $order_direction) = self::parse_order($order);
         $query = "SELECT *
                   FROM shipping_addresses
                   WHERE user_id = :user_id
-                  ORDER BY {$order_column} {$order_direction}
-                  LIMIT {$limit} OFFSET {$offset}";
+                  ORDER BY {$order_column} {$order_direction}";
         return $this->query($query, ["user_id" => $user_id]);
     }
 
@@ -37,6 +36,23 @@ class ShippingAddressDao extends BaseDao
 
     public function delete_address_by_id($id)
     {
-        $this->execute("DELETE FROM shipping_addresses WHERE id = :id", ["id" => $id]);
+        return $this->delete('shipping_addresses', $id);
+    }
+
+
+    /*
+    SELECT sa.country, u.first_name, u.last_name, sa.company_name, sa.address, sa.state, sa.zip_code, u.email, u.phone
+    FROM shipping_addresses sa 
+    JOIN users u ON u.id = sa.user_id
+    WHERE u.id = 2
+    */
+
+    public function get_full_address($user_id)
+    {
+        $query = "SELECT  sa.country, u.first_name, u.last_name, sa.company_name, sa.address, sa.state, sa.zip_code, u.email, u.phone
+                  FROM shipping_addresses sa 
+                  JOIN users u ON u.id = sa.user_id
+                  WHERE u.id = :user_id";
+        return $this->query($query, ["user_id" => $user_id]);
     }
 }

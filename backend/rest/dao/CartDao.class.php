@@ -9,13 +9,12 @@ class CartDao extends BaseDao
         parent::__construct("cart");
     }
 
-    public function get_carts($offset = 0, $limit = 25, $order = "-id")
+    public function get_carts($order = "-id")
     {
         list($order_column, $order_direction) = self::parse_order($order);
         $query = "SELECT *
                   FROM cart
-                  ORDER BY {$order_column} {$order_direction}
-                  LIMIT {$limit} OFFSET {$offset}";
+                  ORDER BY {$order_column} {$order_direction}";
         return $this->query($query, []);
     }
 
@@ -36,17 +35,16 @@ class CartDao extends BaseDao
 
     public function delete_cart_by_id($cart_id)
     {
-        $this->execute("DELETE FROM cart WHERE id = :id", ["id" => $cart_id]);
+        return $this->delete('cart', $cart_id);
     }
 
-    public function get_carts_by_user($user_id, $offset = 0, $limit = 25, $order = "-id")
+    public function get_carts_by_user($user_id, $order = "-id")
     {
         list($order_column, $order_direction) = self::parse_order($order);
         $query = "SELECT *
                   FROM cart
                   WHERE user_id = :user_id
-                  ORDER BY {$order_column} {$order_direction}
-                  LIMIT {$limit} OFFSET {$offset}";
+                  ORDER BY {$order_column} {$order_direction}";
         return $this->query($query, ["user_id" => $user_id]);
     }
 
@@ -57,5 +55,16 @@ class CartDao extends BaseDao
         $stmt = $this->connection->prepare($query);
         $stmt->execute(['cart_id' => $cart_id, 'quantity' => $quantity]);
         return $stmt->rowCount();
+    }
+
+
+    // used to get cart contents by user id
+    public function get_carts_with_products_by_user($user_id)
+    {
+        $query = "SELECT c.id, p.title, p.price, p.image_url, c.quantity
+              FROM cart c
+              JOIN products p ON p.id = c.product_id
+              WHERE c.user_id = :user_id";
+        return $this->query($query, ['user_id' => $user_id]);
     }
 }

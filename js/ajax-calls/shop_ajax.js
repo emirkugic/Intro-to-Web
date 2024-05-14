@@ -1,7 +1,5 @@
 $(document).on("shopPageLoaded", function () {
-	fetch(
-		"http://localhost/web-intro/backend/scripts/products/get_all_products.php"
-	)
+	fetch("http://localhost/web-intro/backend/products/all")
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
@@ -53,5 +51,42 @@ function renderProducts(products) {
 }
 
 function addToCart(productId) {
-	console.log(`Pretend to add product ID ${productId} to cart`);
+	const jwtToken = localStorage.getItem("jwtToken");
+
+	// if (!jwtToken) {
+	// 	window.location.href = "/views/login.html";
+	// 	return;
+	// }
+
+	console.log(`Adding product ID ${productId} to cart with JWT ${jwtToken}`);
+
+	fetch("http://localhost/web-intro/backend/carts/add", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${jwtToken}`,
+		},
+		body: JSON.stringify({
+			productId: productId,
+			quantity: 1,
+		}),
+	})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			return response.json();
+		})
+		.then((data) => {
+			if (data.error) {
+				alert("Failed to add to cart: " + data.error);
+			} else {
+				alert("Product added to cart successfully!");
+				console.log("Product added:", data);
+			}
+		})
+		.catch((error) => {
+			console.error("Error adding to cart:", error);
+			alert("Failed to add to cart, please try again.");
+		});
 }

@@ -11,9 +11,9 @@ class CartService
         $this->cart_dao = new CartDao();
     }
 
-    public function get_all_carts($offset = 0, $limit = 25, $order = "-id")
+    public function get_all_carts($order = "-id")
     {
-        return $this->cart_dao->get_carts($offset, $limit, $order);
+        return $this->cart_dao->get_carts($order);
     }
 
     public function get_cart_by_id($cart_id)
@@ -45,5 +45,16 @@ class CartService
     update_cart_quantity($cart_id, $quantity)
     {
         return $this->cart_dao->update_cart_quantity($cart_id, $quantity);
+    }
+
+
+    public function get_carts_with_products_by_user($user_id)
+    {
+        return $this->cart_dao->get_carts_with_products_by_user($user_id);
+    }
+
+    public function increment_cart_quantity($cart_id)
+    {
+        return $this->cart_dao->get_cart_by_id($cart_id);
     }
 }
