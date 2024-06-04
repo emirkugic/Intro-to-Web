@@ -44,6 +44,7 @@ require 'rest/routes/UserRoutes.php';
 require 'rest/routes/ProductRoutes.php';
 require 'rest/routes/CartRoutes.php';
 require 'rest/routes/ShippingAddressRoutes.php';
+require 'rest/routes/ImageRoutes.php';
 
 // TODO: Implement save address button, mailer for subscriptions for users, credit card API with Stripe duplex communication, and deployment
 
